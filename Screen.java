@@ -46,6 +46,10 @@ public class Screen extends JPanel implements ActionListener {
         viewAll.setText("View all states");
         this.add(viewAll);
         viewAll.addActionListener(this);
+
+        // map and lists
+        MyHashMap<State, StateInfo> states = new MyHashMap<>();
+        DLList list = states.keySet().toDLList();
         
         // user input stuff
         int choice = 0;
@@ -58,11 +62,28 @@ public class Screen extends JPanel implements ActionListener {
             // choice 1
             if (choice == 1) {
                 // SUBANI
+                list = states.keySet().toDLList();
+                for (int i = 0; i < list.size(); i ++) {
+                    System.out.println(list.get(i));
+                }
             }
             
             // choice 2
             if (choice == 2) {
                 // SUBANI
+                System.out.println("What's the name of your State? ");
+                String name = sc.nextLine();
+
+                System.out.println("What's the abbreviation? ");
+                String abbr = sc.nextLine();
+
+                System.out.println("What's the capital? ");
+                String capital = sc.nextLine();
+
+                System.out.println("What's the population? ");
+                int pop = sc.nextInt();
+
+                states.put(new State(abbr, name), new StateInfo(capital, pop));
             }
             
             // choice 3
@@ -78,6 +99,27 @@ public class Screen extends JPanel implements ActionListener {
             // choice 5
             if (choice == 5) {
                 // SUBANI
+                sc.next();
+
+                System.out.println("Enter the state Abbreviation: ");
+                String abbr = sc.nextLine();
+
+                System.out.println("Enter the state Name: ");
+                String name = sc.nextLine();
+
+                State state = new State(abbr, name);
+                StateInfo info = states.get(state);
+
+                if (info == null) {
+                    System.out.println("That state was not found! ");
+                }
+
+                else {
+                    System.out.println("Enter the picture URL: ");
+                    String url = sc.nextLine();
+                    info.addPicture(url);
+                }
+
             }    
         }
         
@@ -89,6 +131,6 @@ public class Screen extends JPanel implements ActionListener {
                 viewInfoIn.setVisible(true);
             }
             else if(e.getSource() == viewAll) {
-                view
+                
             }
         }

@@ -1,10 +1,12 @@
 public class State {
 
    String abbr;
+   String name;
 
    // add a string 'state name' variable, include in to string
-   public State(String abb){
-       abbr = abb;
+   public State(String abbr, String name){
+       this.abbr = abbr;
+       this.name = name;
    }
    @Override
    public int hashCode(){
@@ -33,7 +35,12 @@ public class State {
        return abbr;
    }
 
-   public String toString(){
-    return abbr;
+   public String getName() {
+        return name;
    }
+
+   public String toString(){
+    return "Abbreviation: " + abbr + "\nName: " + name;
+   }
+
 }
